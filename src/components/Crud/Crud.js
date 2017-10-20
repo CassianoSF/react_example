@@ -5,9 +5,10 @@ import CrudShow from './CrudShow.js'
 import CrudRecord from './CrudRecord.js'
 import CrudIndex from './CrudIndex.js'
 import Confirm from '../Confirm/Confirm.js'
-import Auth from 'j-toker'
 import * as api from '../../api.js'
 import './Crud.css'
+
+import Auth from 'j-toker'
 
 class Crud extends Component {
   constructor(props) {
@@ -21,7 +22,6 @@ class Crud extends Component {
       open: false,
       confirm: false,
     }
-    Auth.configure({apiUrl: api.url});
 
     this.new           = this.new.bind(this)
     this.edit          = this.edit.bind(this)
@@ -96,8 +96,10 @@ class Crud extends Component {
     axios.post( 
       self.state.form_route, 
       target,
-      {headers: Auth.retrieveData('authHeaders')})
+      self.props.auth
+    )
     .then(res =>{
+      self.props.authenticate()
       self.closeForm()
       self.state.refresh("create", res.data)
     })
@@ -113,8 +115,10 @@ class Crud extends Component {
     axios.put( 
       self.state.form_route + '/' + self.state.target.id, 
       target,
-      {headers: Auth.retrieveData('authHeaders')})
+      self.props.auth
+    )
     .then(res =>{
+      self.props.authenticate()
       self.closeForm()
       self.state.refresh("update", res.data)
     })
@@ -129,8 +133,10 @@ class Crud extends Component {
     var self = this;
     axios.delete( 
       self.state.form_route + '/' + self.state.target.id, 
-      {headers: Auth.retrieveData('authHeaders')})
+      self.props.auth
+    )
     .then(res =>{
+      self.props.authenticate()
       self.state.refresh("delete", target)
       self.setState({ 
         confirm: false,
@@ -147,8 +153,10 @@ class Crud extends Component {
     var self = this;
     axios.get( 
       self.props.api_path, 
-      {headers: Auth.retrieveData('authHeaders')})
+      self.props.auth
+    )
     .then(res => {
+      self.props.authenticate()
       self.setState({list: res.data})
     })
     .catch((err) => {
@@ -191,6 +199,7 @@ class Crud extends Component {
   }
 
   render() {
+    console.log(this.props.auth)
     return (
       <div className="container">
         <div className="animated fadeIn">

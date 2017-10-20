@@ -59,7 +59,7 @@ export default class CrudForm extends Component {
             <Form>
             {this.props.columns.map(column =>
               <FormGroup key={column.name + "FromGroup"}>
-                <Label for={column.name}>{this.capitalize(column.name).replace("id", "")}</Label>
+                <Label for={column.name}>{this.capitalize(column.name).replace("_id", "")}</Label>
                 <CrudInput 
                   column={column.name} 
                   info={column}

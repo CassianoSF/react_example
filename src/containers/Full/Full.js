@@ -28,11 +28,12 @@ import SimpleLineIcons from '../../views/Icons/SimpleLineIcons/';
 import Auth from 'j-toker'
 
 class Full extends Component {
+  constructor(props) {
+    super(props);
+  }
+
   render() {
-    let home = Auth.user.signedIn ? "/dashboard" : "/login";
-    let btn_style = {
-      width: "20px",
-    }
+    let home = this.props.auth ? "/dashboard" : "/login";
     return (
       <div className="app">
         <Header/>
@@ -55,8 +56,12 @@ class Full extends Component {
                   <Route path="/icons/simple-line-icons" name="Simple Line Icons" component={SimpleLineIcons}/>
                   <Route path="/widgets" name="Widgets" component={Widgets}/>
                   <Route path="/charts" name="Charts" component={Charts}/>
-                  <Route path="/lançamentos" name="Lançamentos" component={Lançamentos}/>
-                  <Route path="/categorias" name="Categorias" component={Categorias}/>
+                  <Route exact path="/categorias"  name="Categorias"  history={this.props.history} render={(props) => 
+                    <Categorias {...props} authenticate={this.props.authenticate} auth={this.props.auth}/>}
+                  />
+                  <Route exact path="/lançamentos" name="Lançamentos" history={this.props.history} render={(props) => 
+                    <Lançamentos {...props} authenticate={this.props.authenticate} auth={this.props.auth}/>}
+                  />
                   <Redirect from="/" to={home}/>
                 </Switch>
               </Container>

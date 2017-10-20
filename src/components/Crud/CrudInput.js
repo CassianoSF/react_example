@@ -38,7 +38,6 @@ export default class CrudInput extends Component {
 
   selectInput(){
     let value;
-    let options;
     let self = this;
     if(this.props.value){
       value = (
@@ -47,18 +46,15 @@ export default class CrudInput extends Component {
         })[0]['value']
       )
     }else if(this.props.info.values[0]){
-      options = (
-        this.props.info.values.map(op =>
-          <option key={op.id+"Key"} value={op.id}>{op.value}</option>
-        )
-      ) 
       return (
         <select 
           name={this.props.column} 
           className="form-control" 
           defaultValue={this.props.value || this.props.info.values[0].id} 
-          onChange={this.onChange}>
-            {options}
+          onChange={this.onChange}> 
+          {this.props.info.values.map(op =>
+              <option key={op.id+"Key"} value={op.id}>{op.value}</option>
+          )}
         </select>
       )
     }

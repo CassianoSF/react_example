@@ -1,7 +1,8 @@
 const routes = {
   '/': 'Home',
   '/dashboard': 'Dashboard',
-  '/fluxos_de_caixa': 'FluxosDeCaixa',
+  '/categorias': 'Categorias',
+  '/lançamentos': 'Lançamentos',
   '/components': 'Components',
   '/charts': 'Charts',
   '/components/buttons': 'Buttons',

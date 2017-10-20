@@ -9,20 +9,21 @@ class Lançamentos extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      categorias: []
+      categorias: [],
     }
     this.getCategorias = this.getCategorias.bind(this)
   }
 
   componentDidMount() {
-   this.getCategorias() 
+    this.getCategorias() 
   }
 
   getCategorias(){
     axios.get(
       api.categorias, 
-      {headers: Auth.retrieveData('authHeaders')})
+      this.props.auth)
     .then(res =>{
+      this.props.authenticate()
       this.setState({categorias: res.data})
     }).catch((err) => {
       if(err.response && err.response.status === 401){
@@ -61,7 +62,7 @@ class Lançamentos extends Component {
       }
     ]
     return (
-      <Crud api_path={api.lançamentos} columns={columns} name={"Lançamentos"} history={this.props.history}/>
+      <Crud api_path={api.lançamentos} columns={columns} name={"Lançamentos"} auth={this.props.auth} authenticate={this.props.authenticate} history={this.props.history}/>
     )
   }
 }

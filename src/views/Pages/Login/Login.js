@@ -25,13 +25,15 @@ class Login extends Component {
     Auth.configure({apiUrl: api.url});
     Auth.emailSignIn(
       self.state)
-    .then(res =>{
-          console.log(res.data)
-          self.props.history.push('/')}
+    .then(res => {
+        self.props.authenticate()
+        self.props.history.push('/')
+      }
     );
   }
 
   render() {
+    console.log(this.props)
     return (
       <div>
         <div className="login-content app flex-row align-items-center">
