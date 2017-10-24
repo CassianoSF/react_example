@@ -36,10 +36,10 @@ class Lançamentos extends Component {
     let columns = [
       {
         name: "tipo",
-        type: "select",
+        type: "categoria",
         values: [
-          {id: "receita", value: "Receita"},
-          {id: "despesa", value: "Despesa"}
+          {id: "receita", value: "Receita", cor:"#0D0"},
+          {id: "despesa", value: "Despesa", cor:"#D00"}
         ]
       },
       {
@@ -52,11 +52,12 @@ class Lançamentos extends Component {
       },
       {
         name: "categoria_id",
-        type: "select",
+        type: "categoria",
         values: this.state.categorias && this.state.categorias.map(function(cat) {
                 var hash = {}; 
                 hash['value'] = cat.nome; 
                 hash['id'] = cat.id;
+                hash['cor'] = cat.cor;
                 return hash;
         })
       }

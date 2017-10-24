@@ -54,7 +54,7 @@ export default class CrudForm extends Component {
   render() {
     return(
       <Modal isOpen={this.props.open} toggle={this.toggle} className={this.props.className}>
-        <ModalHeader>{this.props.target ? "Editar "+this.props.name : "Nova target"+this.props.name}</ModalHeader>
+        <ModalHeader>{this.props.target ? "Editar "+this.props.name : "Criar "+this.props.name}</ModalHeader>
         <ModalBody>
           <div>
             <Form>

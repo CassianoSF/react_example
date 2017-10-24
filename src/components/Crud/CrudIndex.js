@@ -42,7 +42,7 @@ class CrudIndex extends Component {
           <thead>
             <tr>
               {this.props.columns.map(column =>
-                <th key={column.name + "Head"}>{this.humanize(column.name).replace("_id", "")}</th>
+                <th key={column.name + "Head"}>{this.humanize(column.name.replace("_id", "")).replace("cao", "ção")}</th>// ---- I18n rs...
               )}
               <th></th>
               <th></th>

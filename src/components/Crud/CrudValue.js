@@ -9,6 +9,8 @@ class CrudValue extends Component {
       return this.boolValue();
     }else if(this.props.column.type === "select" && this.props.value){
       return this.idValue();
+    }else if(this.props.column.type === "categoria" && this.props.value){
+      return this._categoria();
     }else if(this.props.column.type === "color"){
       return this.colorValue();
     }else{
@@ -32,11 +34,22 @@ class CrudValue extends Component {
   }
 
   idValue(){
-    var self = this;
+    let self = this
     return(
       this.props.column.values.filter(function(value) {
         return (value['id'] === self.props.value)
       })[0]['value']
+    )
+  }
+
+  _categoria(){
+    let self = this
+    let selected = this.props.column.values.filter((value) => value['id'] === self.props.value)[0]
+    console.log(selected)
+    return (
+      <span className={"badge"} style={{backgroundColor: selected.cor}} >
+        { selected.value }
+      </span>
     )
   }
 
