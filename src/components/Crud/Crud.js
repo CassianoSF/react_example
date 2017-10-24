@@ -35,6 +35,7 @@ class Crud extends Component {
     this.columns       = this.columns.bind(this)
     this.openShow      = this.openShow.bind(this)
     this.closeShow     = this.closeShow.bind(this)
+
   }
 
   componentDidMount(){
@@ -93,13 +94,13 @@ class Crud extends Component {
 
   create(target){
     var self = this;
-    axios.post( 
+      axios.post( 
       self.state.form_route, 
       target,
       self.props.auth
     )
     .then(res =>{
-      self.props.authenticate()
+      self.props.authenticate(res.headers)
       self.closeForm()
       self.state.refresh("create", res.data)
     })
@@ -118,7 +119,7 @@ class Crud extends Component {
       self.props.auth
     )
     .then(res =>{
-      self.props.authenticate()
+      self.props.authenticate(res.headers)
       self.closeForm()
       self.state.refresh("update", res.data)
     })
@@ -136,7 +137,7 @@ class Crud extends Component {
       self.props.auth
     )
     .then(res =>{
-      self.props.authenticate()
+      self.props.authenticate(res.headers)
       self.state.refresh("delete", target)
       self.setState({ 
         confirm: false,
@@ -155,8 +156,7 @@ class Crud extends Component {
       self.props.api_path, 
       self.props.auth
     )
-    .then(res => {
-      self.props.authenticate()
+    .then(res =>{
       self.setState({list: res.data})
     })
     .catch((err) => {
@@ -199,7 +199,6 @@ class Crud extends Component {
   }
 
   render() {
-    console.log(this.props.auth)
     return (
       <div className="container">
         <div className="animated fadeIn">

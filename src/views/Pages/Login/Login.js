@@ -22,18 +22,16 @@ class Login extends Component {
   handleSubmit(e){
     e.preventDefault();
     let self = this;
-    Auth.configure({apiUrl: api.url});
     Auth.emailSignIn(
-      self.state)
+      self.state
+    )
     .then(res => {
-        self.props.authenticate()
-        self.props.history.push('/')
-      }
-    );
+      self.props.login()
+      self.props.history.push('/')
+    });
   }
 
   render() {
-    console.log(this.props)
     return (
       <div>
         <div className="login-content app flex-row align-items-center">

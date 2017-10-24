@@ -40,6 +40,7 @@ export default class CrudForm extends Component {
   confirmar(){
     this.props.target ?
       this.props.update(this.state) : this.props.create(this.state)
+    this.props.close()
   }
 
   capitalize(str) {

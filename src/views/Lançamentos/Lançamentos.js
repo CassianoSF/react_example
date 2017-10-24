@@ -11,7 +11,7 @@ class Lançamentos extends Component {
     this.state = {
       categorias: [],
     }
-    this.getCategorias = this.getCategorias.bind(this)
+    // this.getCategorias = this.getCategorias.bind(this)
   }
 
   componentDidMount() {
@@ -19,12 +19,12 @@ class Lançamentos extends Component {
   }
 
   getCategorias(){
+    let self = this
     axios.get(
       api.categorias, 
-      this.props.auth)
+      self.props.auth)
     .then(res =>{
-      this.props.authenticate()
-      this.setState({categorias: res.data})
+      self.setState({categorias: res.data})
     }).catch((err) => {
       if(err.response && err.response.status === 401){
         self.props.history.push("/login")
