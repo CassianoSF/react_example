@@ -140,6 +140,14 @@ rails s
 ```
   rails new rails_api_example --api --database=postgresql
 ```
+  
+  O rails possui uma série de cenveções para facilitar o desenvolvimento, uma delas é a criação dinamica de plurais e singulares para as palavras. Porém como vou utliziar palavras em portugues precisei fazer uma alteração nessa conveção.
+  No Arquivo 'config/initializers/inflection.rb' inclui a seguinte linha:
+```
+  inflect.irregular 'categoria', 'categorias'
+```
+  Caso contrario categoria seria plural e categorium seria singular. Nada demais, mas vale a pena para ver uma das funcionalidades do rails.
+
 
   Feito isso criamos a estrutura básica de lançamentos e categorias:
 ```
@@ -147,7 +155,7 @@ rails s
   rails generate scaffold lancamento valor:float descricao user_id:integer categoria_id:integer tipo
 ```
 
-  Esses comando criam todo o MVC do rails para o respectivo model (categoria e lançamento), inclusive cria as migrações, as quais podem ser utilizadas com qualquer banco sem a necessidade de alterar nada além da gem e aconfiguração de acesso ao banco. Por exemplo se quisermos alterar para sqlite seria só entrar no GEMFILE e alterar a gem 'pg' para 'sqlite' e no arquivo 'config/database' alterar as configurações para o adaptador correto.
+  Esses comandos criam todo o MVC do rails para o respectivo model (categoria e lançamento), inclusive cria as migrações, as quais podem ser utilizadas com qualquer banco sem a necessidade de alterar nada além da gem e a configuração de acesso ao banco. Por exemplo se quisermos alterar para sqlite seria só entrar no GEMFILE e alterar a gem 'pg' para 'sqlite' e no arquivo 'config/database' alterar as configurações para o adaptador correto.
 
   Feito isso basta criar o banco:
 ```
