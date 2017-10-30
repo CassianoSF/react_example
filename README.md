@@ -20,19 +20,18 @@
     - [Devise](#devise)
 
 
-
 ## Introdução
 
   Esse projeto foi criado para uma atividade avaliativa na matéria de programação web.
   O objetivo do projeto era construir um aplicativo web para fluxo de caixa utilizando
-  frameworks de desenvolvimento web populares, escolhemos o framewok Ruby on Rails(http://rubyonrails.org/)
-  utilizado como API RestFULL no back-end e a biblioteca ReactJS(https://reactjs.org/) no front-end.
+  frameworks de desenvolvimento web populares, escolhemos o framewok [Ruby on Rails](http://rubyonrails.org/)
+  utilizado como API RESTful no back-end e a biblioteca [ReactJS](https://reactjs.org/) no front-end.
 
 ## Setup
 
-  O sistema operacional utilizado para desenvolvimento foi o Ubuntu 16.04 que pode ser econtrado aqui(https://www.ubuntu.com/download/desktop). Para instalar foi utilizado um pendrive e a ferramenta Rufus(https://rufus.akeo.ie/?locale=pt_BR) para tornar o pendrive bootavel.
+  O sistema operacional utilizado para desenvolvimento foi o Ubuntu 16.04 que pode ser econtrado [aqui](https://www.ubuntu.com/download/desktop). Para instalar foi utilizado um pendrive e a ferramenta [Rufus](https://rufus.akeo.ie/?locale=pt_BR) para tornar o pendrive bootavel.
   
-  Para a instalação do Ruby on Rails eu segui o guia(https://gorails.com/setup/ubuntu/16.04) da GoRails, aonde está bem documentado e sempre bem atualizado multiplas versões do Ubuntu.
+  Para a instalação do Ruby on Rails eu segui o [guia](https://gorails.com/setup/ubuntu/16.04) da GoRails, aonde está bem documentado e sempre bem atualizado multiplas versões do Ubuntu.
 
   ## Instalando o Ruby
 
@@ -108,13 +107,16 @@ rake db:create
 rails s
 ```
 
-  Se tudo correu bem seu servidor já esta rodando em localhost:3000(http://localhost:3000)
+  Se tudo correu bem seu servidor já esta rodando em [localhost:3000](http://localhost:3000)
 
 
 
 ## Desenvolvimento
 
-## Front-end
+  Boa parte do trabalho de desenvolvimento foi procurar a ferramenta ou a biblioteca certa. Na internet tem quase tudo pronto ai é só enteder como funciona e usar. A unica parte em que foi realmente colocado a mão na massa foi o CRUD e algumas alterações de layout.
+  Algo que me deixou meio perdido a principio foi a sintaxe do React, que mistura HTML e js tudo junto. Mas uma coisa que ajudou bastante foi o Sublime Text, a sintaxe do react(jsx / babel) não vem por default no sublime enão eu tive que instalar um pacote para o "Highlight" ficar correto. Se você tambem esta com esse problema instale o Package Control no Sublime seguindo, [aqui](https://packagecontrol.io/installation) explica como fazer isso. E para instalar a syntaxe use magnifico (Ctrl + Shift + P) no sublime e digite 'install package' aperte 'enter' espera alguns segundos e digite 'babel' e aperte 'enter', assim você instalou a sintaxe certa para utilizar o react.
+
+## Front-end  
 
 ## React
 
