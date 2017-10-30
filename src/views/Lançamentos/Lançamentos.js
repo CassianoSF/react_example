@@ -10,12 +10,13 @@ class Lançamentos extends Component {
     super(props);
     this.state = {
       categorias: [],
+      lançamentos: []
     }
-    // this.getCategorias = this.getCategorias.bind(this)
   }
 
   componentDidMount() {
     this.getCategorias() 
+    this.getLançamentos()
   }
 
   getCategorias(){
@@ -25,6 +26,20 @@ class Lançamentos extends Component {
       self.props.auth)
     .then(res =>{
       self.setState({categorias: res.data})
+    }).catch((err) => {
+      if(err.response && err.response.status === 401){
+        self.props.history.push("/login")
+      }
+    });
+  }
+
+  getLançamentos(){
+    let self = this
+    axios.get(
+      api.lançamentos, 
+      self.props.auth)
+    .then(res =>{
+      self.setState({lançamentos: res.data})
     }).catch((err) => {
       if(err.response && err.response.status === 401){
         self.props.history.push("/login")
@@ -62,8 +77,16 @@ class Lançamentos extends Component {
         })
       }
     ]
+    let total_receitas = this.state.lançamentos.filter((l)=> l.tipo === 'receita' ).map(l => l.valor).reduce((a, b)=> a+b, 0)
+    let total_despesas = this.state.lançamentos.filter((l)=> l.tipo === 'despesa' ).map(l => l.valor).reduce((a, b)=> a+b, 0)
+    let saldo = total_receitas - total_despesas
     return (
-      <Crud api_path={api.lançamentos} columns={columns} name={"Lançamentos"} auth={this.props.auth} authenticate={this.props.authenticate} history={this.props.history}/>
+      <div>
+        <div className="btn btn-lg btn-success m-3 ">Receitas: R$ {total_receitas.toFixed(2)} </div>
+        <div className="btn btn-lg btn-danger m-3 ">Despesas: R$ {total_despesas.toFixed(2)} </div>
+        <div className="btn btn-lg btn-primary m-3 ">Saldo: R$  {saldo.toFixed(2)} </div>
+        <Crud api_path={api.lançamentos} columns={columns} name={"Lançamentos"} auth={this.props.auth} authenticate={this.props.authenticate} history={this.props.history}/>
+      </div>
     )
   }
 }

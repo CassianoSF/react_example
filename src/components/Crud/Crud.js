@@ -203,18 +203,6 @@ class Crud extends Component {
       <div className="container">
         <div className="animated fadeIn">
           <div className="card">
-            <div className="row">
-              <div className="">
-                <div className="col-md-12 mt-3 ml-3 mr-3">
-                  <div className="input-group">
-                    <span className="input-group-btn">
-                      <button type="button" className="btn btn-primary"><i className="fa fa-search"></i> Pesquisar</button>
-                    </span>
-                    <input type="text" id="input1-group2" name="input1-group2" className="form-control" placeholder={this.props.name}/>
-                  </div>
-                </div>
-              </div>
-            </div>
             <CrudIndex
                     columns={this.columns("index")}
                        list={this.state.list}

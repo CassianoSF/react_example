@@ -45,7 +45,6 @@ class CrudValue extends Component {
   _categoria(){
     let self = this
     let selected = this.props.column.values.filter((value) => value['id'] === self.props.value)[0]
-    console.log(selected)
     return (
       <span className={"badge"} style={{backgroundColor: selected.cor}} >
         { selected.value }

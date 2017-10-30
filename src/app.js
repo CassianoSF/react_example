@@ -72,7 +72,7 @@ export default class App extends Component {
             <Login {...props}    login={this.login} />
           }/>
           <Route path="/"               history={this.state.history} name="Home"          render={(props) => 
-            <Full {...props}     authenticate={this.authenticate} auth={this.state.auth} home={'/dashboard'} />
+            <Full {...props}     authenticate={this.authenticate} auth={this.state.auth} home={'/lançamentos'} />
           }/>
         </Switch>
       </HashRouter>
