@@ -13,6 +13,7 @@
     - [J-Toker](#j-toker)
     - [Crud](#crud)
   - [Back-end](#back-end)
+    - [Criando a API](#criando-a-api)
     - [Ruby](#ruby)
     - [Rails](#rails)
     - [Gems](#gems)
@@ -107,16 +108,16 @@ rake db:create
 rails s
 ```
 
-  Se tudo correu bem seu servidor já esta rodando em [localhost:3000](http://localhost:3000)
+  Se tudo correu bem seu servidor já esta executando em [localhost:3000](http://localhost:3000)
 
 
 
 ## Desenvolvimento
 
   Boa parte do trabalho de desenvolvimento foi procurar a ferramenta ou a biblioteca certa. Na internet tem quase tudo pronto ai é só enteder como funciona e usar. A unica parte em que foi realmente colocado a mão na massa foi o CRUD e algumas alterações de layout.
-  Algo que me deixou meio perdido a principio foi a sintaxe do React, que mistura HTML e js tudo junto. Mas uma coisa que ajudou bastante foi o Sublime Text, a sintaxe do react(jsx / babel) não vem por default no sublime enão eu tive que instalar um pacote para o "Highlight" ficar correto. Se você tambem esta com esse problema instale o Package Control no Sublime seguindo, [aqui](https://packagecontrol.io/installation) explica como fazer isso. E para instalar a syntaxe use magnifico (Ctrl + Shift + P) no sublime e digite 'install package' aperte 'enter' espera alguns segundos e digite 'babel' e aperte 'enter', assim você instalou a sintaxe certa para utilizar o react.
+  Algo que me deixou meio perdido a principio foi a sintaxe do React, que mistura HTML e js tudo junto. Mas uma coisa que ajudou bastante foi o Sublime Text, a sintaxe do react(jsx / babel) não vem por default no sublime então eu tive que instalar um pacote para o "Highlight" ficar correto. Se você tambem esta com esse problema instale o Package Control no Sublime, [aqui](https://packagecontrol.io/installation) explica como fazer isso. E para instalar a syntaxe use o magnífico (Ctrl + Shift + P) do sublime e digite 'install package' aperte 'enter' espera alguns segundos e digite 'babel' e aperte 'enter', assim você instalou a sintaxe certa para utilizar no react.
 
-## Front-end  
+## Front-end
 
 ## React
 
@@ -128,7 +129,35 @@ rails s
 
 ## Crud
 
-## Back-end
+## Back-end  
+
+  No back-end usamos o rails como api. Pode parecer um exagero utilizar o rails para criar uma simples api RESTful, mas a facilidade de criar a estrutura inicial e a quantidade de gems (bibliotecas) prontas para utilizar com ele é incrivel.
+  Conseguimos criar api inteira com seção de usuário, envio de emails, cross request e estrutura do banco com apenas alguns comandos no terminal e pouquissimas alterações no código.
+
+## Criando a API
+
+  Para criar a estrutura inicial do projeto usamos o seguinte comando no terminal:
+```
+  rails new rails_api_example --api --database=postgresql
+```
+
+  Feito isso criamos a estrutura básica de lançamentos e categorias:
+```
+  rails generate scaffold categoria nome cor user_id:integer
+  rails generate scaffold lancamento valor:float descricao user_id:integer categoria_id:integer tipo
+```
+
+  Esses comando criam todo o MVC do rails para o respectivo model (categoria e lançamento), inclusive cria as migrações, as quais podem ser utilizadas com qualquer banco sem a necessidade de alterar nada além da gem e aconfiguração de acesso ao banco. Por exemplo se quisermos alterar para sqlite seria só entrar no GEMFILE e alterar a gem 'pg' para 'sqlite' e no arquivo 'config/database' alterar as configurações para o adaptador correto.
+
+  Feito isso basta criar o banco:
+```
+  rake db:create  
+```
+
+  E executar as migrações:
+```
+  rake db:migrate
+```
 
 ## Ruby
 
