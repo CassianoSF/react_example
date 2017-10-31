@@ -74,7 +74,7 @@ export default class CrudForm extends Component {
         </ModalBody>
         <ModalFooter>
           <Button color="primary" onClick={() => this.confirmar()}>Confirmar</Button>
-          <Button color="secondary" onClick={() => this.props.close()}>Cancel</Button>
+          <Button color="secondary" onClick={() => this.props.close()}>Cancelar</Button>
         </ModalFooter>
       </Modal>
     )

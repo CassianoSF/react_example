@@ -42,6 +42,11 @@ class Crud extends Component {
     this.index();
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if(prevState !== this.state)
+      this.props.atualiza && this.props.atualiza()
+  }
+
   new(columns, route, refresh){
     this.setState({
            refresh: refresh,
@@ -219,7 +224,7 @@ class Crud extends Component {
             <CrudForm
               api_path={this.state.form_route || this.props.api_path}
                   name={this.props.name} 
-               columns={this.state.form_columns || this.props.columns} 
+               columns={this.state.form_columns3 || this.props.columns} 
                nesteds={this.props.nesteds}
                 target={this.state.target} 
                  index={this.index}

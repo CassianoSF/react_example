@@ -1,8 +1,12 @@
-Para fazer o deploy execute no terminal:
+Para executar:
+
+npm start
+
+ou
 
 npm run build
 
-e a aplicação vai estar pronta para fazer deploy com qualquer servidor web na pasta build.
+e a aplicação vai estar pronta para fazer deploy com qualquer servidor web na pasta /build.
 
 ex:
 ```

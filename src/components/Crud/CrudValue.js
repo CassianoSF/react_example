@@ -13,6 +13,10 @@ class CrudValue extends Component {
       return this._categoria();
     }else if(this.props.column.type === "color"){
       return this.colorValue();
+    }else if(this.props.column.type === "date"){
+      return this.props.value.replace("-", "/").replace("-", "/").replace("T", " - ").slice(0, -5);
+    }else if(this.props.column.type === "number"){
+      return this.props.value.toFixed(2)
     }else{
       return this.props.value
     }

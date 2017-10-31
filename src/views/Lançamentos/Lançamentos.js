@@ -12,6 +12,7 @@ class Lançamentos extends Component {
       categorias: [],
       lançamentos: []
     }
+    this.getLançamentos = this.getLançamentos.bind(this)
   }
 
   componentDidMount() {
@@ -82,10 +83,14 @@ class Lançamentos extends Component {
     let saldo = total_receitas - total_despesas
     return (
       <div>
-        <div className="btn btn-lg btn-success m-3 ">Receitas: R$ {total_receitas.toFixed(2)} </div>
-        <div className="btn btn-lg btn-danger m-3 ">Despesas: R$ {total_despesas.toFixed(2)} </div>
-        <div className="btn btn-lg btn-primary m-3 ">Saldo: R$  {saldo.toFixed(2)} </div>
-        <Crud api_path={api.lançamentos} columns={columns} name={"Lançamentos"} auth={this.props.auth} authenticate={this.props.authenticate} history={this.props.history}/>
+        <div className="container">
+          <div style={{margin: "auto", width: "50%"}}>
+            <div className="btn btn-success">Receitas: R$ {total_receitas.toFixed(2)} </div>
+            <div className="btn btn-danger">Despesas: R$ {total_despesas.toFixed(2)} </div>
+            <div className="btn btn-primary">Saldo: R$  {saldo.toFixed(2)} </div>
+          </div>
+        </div>
+        <Crud api_path={api.lançamentos} atualiza={this.getLançamentos} columns={columns} name={"Lançamentos"} auth={this.props.auth} authenticate={this.props.authenticate} history={this.props.history}/>
       </div>
     )
   }

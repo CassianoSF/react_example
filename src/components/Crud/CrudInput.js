@@ -17,7 +17,7 @@ export default class CrudInput extends Component {
 
     
   componentWillMount() {
-    if(this.props.info.type === "select"){
+    if(this.props.info.type === "select" || this.props.info.type === "categoria" ){
       this.props.parentSetState({ 
         [this.props.column]: (this.props.value || this.props.info.values[0] && this.props.info.values[0].id) 
       })
@@ -39,13 +39,12 @@ export default class CrudInput extends Component {
   }
 
   _select(){
-    let value;
     let self = this;
     return (
       <select 
         name={this.props.column} 
         className="form-control" 
-        defaultValue={this.props.value || this.props.info.values[0].id} 
+        defaultValue={this.props.value || this.props.info.values[0] && this.props.info.values[0].id} 
         onChange={this._onChange}> 
         {this.props.info.values.map(op =>
             <option key={op.id+"Key"} value={op.id}>{op.value}</option>
