@@ -1,3 +1,16 @@
+Para fazer o deploy execute no terminal:
+
+npm run build
+
+e a aplicação vai estar pronta para fazer deploy com qualquer servidor web na pasta build.
+
+ex:
+```
+cd build
+python -m SimpleHTTPServer 9000
+```
+
+
 ## Conteudo
 
 - [Introdução](#introdução)
