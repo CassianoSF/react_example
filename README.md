@@ -14,11 +14,9 @@
     - [Crud](#crud)
   - [Back-end](#back-end)
     - [Criando a API](#criando-a-api)
-    - [Ruby](#ruby)
-    - [Rails](#rails)
-    - [Gems](#gems)
-    - [MVC](#mvc)
-    - [Devise](#devise)
+    - [Seção de usuário](#seção-de-usuário)
+    - [Relacionamentos](#relacionamentos)
+
 
 
 ## Introdução
@@ -167,12 +165,91 @@ rails s
   rake db:migrate
 ```
 
-## Ruby
+## Seção de usuário
 
-## Rails
+  Utilizamos a gem [devise token auth](https://github.com/lynndylanhurley/devise_token_auth) para criar seção de usuário, com registro por email, confirmação do email e autenticação por token.
 
-## Gems
+  A primeira coisa a fazer foi instalar a gem, então inserimos no arquivo GEMFILE a seguinte linha:
+```
+  gem "devise_token_auth"
+```
+  E com o terminal aberto na pasta root da aplicação:
+```
+bundle install
+```
+  Feito isso criamos o modelo autenticado com o seguinte comando:
+```
+  rails g devise_token_auth:install User auth
+```
+  No arquivo de configuração config/initializers/devise_token_auth definimos a url de redirecinamento dos emails apos a configuração do registro.
+```
+  config.default_confirm_success_url = "http://localhost:8080"
+```
+  E para que o token não altere a cada request com o seguinte linha: 
+```
+  config.change_headers_on_each_request = false
+```
 
-## MVC
+## Relacionamentos
 
-## Devise
+  Foi criado as foreign keys de user_id nos modelos categoria e lancamento e a foreign key categoria_id em lancamento, para relacionalos agora precimos adicionar algums linhas nos modelos:
+
+  app/models/lancamento.rb
+```
+  belongs_to :user
+  belongs_to :categoria
+```
+  app/models/categoria.rb
+```
+  belongs_to :user
+  has_many :lancamentos
+```
+  app/models/user.rb
+```
+  has_many :categorias
+  has_many :lancamentos
+```
+  Agora os modelos estão relacionados corretamento mas os controllers ainda precisam ser ajustados para que mostrem apenas os registros relacionados ao usuário, para isso precisamos fazer tres coisas. 
+
+  A primeira foi criar um controller autenticado, que herdará do application controller e só poderá ser acessado por usuários logados. Então criamos o /app/controllers/authencated_controller.rb:
+```
+class AuthenticatedController < ApplicationController
+  before_action :authenticate_user!
+end
+```
+  
+  E a segunda foi fazer com que os controllers de lançamentos e categorias herdem do authenticated_controller:
+
+```
+class LancamentosController < AuthenticatedController
+...
+class CategoriasController < AuthenticatedController
+```
+
+   E por ultimo fazer com que peguem os dados apenas do current_user, um medoto que o devise criou para nós que indentifica o usuário logado:
+  
+  No app/controllers/categorias_controllers.rb
+
+```
+  # aonde era:
+  Categoria.all
+  # fica agora:
+  current_user.categorias
+  # e aonde era:
+  Categoria.find(params[:id])
+  # fica agora:
+  current_user.categorias.find(params[:id])
+```
+
+  E no app/controllers/lancamentos_controllers.rb
+
+```
+  # aonde era:
+  Lancamento.all
+  # fica agora:
+  current_user.lancamentos
+  # e aonde era:
+  Lancamento.find(params[:id])
+  # fica agora:
+  current_user.lancamentos.find(params[:id])
+```
