@@ -6,18 +6,12 @@
   - [Instalando o Rails](#instalando-o-rails)
   - [Instalando o PostgreSQL](#instalando-o-postgresql)
 - [Desenvolvimento](#desenvolvimento)
-  - [Front-end](#front-end)
-    - [React](#react)
-    - [CoreUi](#coreui)
-    - [Axios](#axios)
-    - [J-Toker](#j-toker)
-    - [Crud](#crud)
   - [Back-end](#back-end)
     - [Criando a API](#criando-a-api)
     - [Seção de usuário](#seção-de-usuário)
     - [Relacionamentos](#relacionamentos)
-
-
+  - [Front-end](#front-end)
+    - [Criando a SPA](#criando-a-spa)
 
 ## Introdução
 
@@ -115,17 +109,6 @@ rails s
   Boa parte do trabalho de desenvolvimento foi procurar a ferramenta ou a biblioteca certa. Na internet tem quase tudo pronto ai é só enteder como funciona e usar. A unica parte em que foi realmente colocado a mão na massa foi o CRUD e algumas alterações de layout.
   Algo que me deixou meio perdido a principio foi a sintaxe do React, que mistura HTML e js tudo junto. Mas uma coisa que ajudou bastante foi o Sublime Text, a sintaxe do react(jsx / babel) não vem por default no sublime então eu tive que instalar um pacote para o "Highlight" ficar correto. Se você tambem esta com esse problema instale o Package Control no Sublime, [aqui](https://packagecontrol.io/installation) explica como fazer isso. E para instalar a syntaxe use o magnífico (Ctrl + Shift + P) do sublime e digite 'install package' aperte 'enter' espera alguns segundos e digite 'babel' e aperte 'enter', assim você instalou a sintaxe certa para utilizar no react.
 
-## Front-end
-
-## React
-
-## CoreUi
-
-## Axios
-
-## J-Toker
-
-## Crud
 
 ## Back-end  
 
@@ -253,3 +236,9 @@ class CategoriasController < AuthenticatedController
   # fica agora:
   current_user.lancamentos.find(params[:id])
 ```
+
+## Front-end
+  Para criar o front utilizamos node.js, reactjs, axios e o tema para bootstrap CoreUI.
+  Não se pode chamar nenhum desses de framework, são mais um conjunto de bibliotecas isolada mas que funcionam muito bem juntas.
+
+## Criando a SPA
