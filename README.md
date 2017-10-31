@@ -15,9 +15,7 @@
 
 ## Introdução
 
-  Esse projeto foi criado para uma atividade avaliativa na matéria de programação web.
-  O objetivo do projeto era construir um aplicativo web para fluxo de caixa utilizando
-  frameworks de desenvolvimento web populares, escolhemos o framewok [Ruby on Rails](http://rubyonrails.org/)
+  Esse projeto tem por objetivo construir um aplicativo web para fluxo de caixa utilizando frameworks de desenvolvimento web populares, escolhemos o framewok [Ruby on Rails](http://rubyonrails.org/)
   utilizado como API RESTful no back-end e a biblioteca [ReactJS](https://reactjs.org/) no front-end.
 
 ## Setup
@@ -72,7 +70,7 @@ gem install bundler
 
 ## Instalando o PostgreSQL
 
-  Como banco de dados escolhemos o banco padrão da comunidade rails o Postgres:
+  Como banco de dados escolhemos o banco padrão da comunidade rails, o Postgres:
 
 ```
 sudo sh -c "echo 'deb http://apt.postgresql.org/pub/repos/apt/ xenial-pgdg main' > /etc/apt/sources.list.d/pgdg.list"
@@ -86,7 +84,7 @@ sudo apt-get install postgresql-9.5 libpq-dev
 
 ```
   sudo -u postgres createuser nome_do_usuario -s
-  # se você deseja criar uma senha para seu usuário você digite ainda no terminal:
+  # se você deseja criar uma senha para seu usuário, digite ainda no terminal:
   sudo -u postgres psql
   postgres=# \password nome_do_usuario
 ```
@@ -107,7 +105,7 @@ rails s
 ## Desenvolvimento
 
   Boa parte do trabalho de desenvolvimento foi procurar a ferramenta ou a biblioteca certa. Na internet tem quase tudo pronto ai é só enteder como funciona e usar. A unica parte em que foi realmente colocado a mão na massa foi o CRUD e algumas alterações de layout.
-  Algo que me deixou meio perdido a principio foi a sintaxe do React, que mistura HTML e js tudo junto. Mas uma coisa que ajudou bastante foi o Sublime Text, a sintaxe do react(jsx / babel) não vem por default no sublime então eu tive que instalar um pacote para o "Highlight" ficar correto. Se você tambem esta com esse problema instale o Package Control no Sublime, [aqui](https://packagecontrol.io/installation) explica como fazer isso. E para instalar a syntaxe use o magnífico (Ctrl + Shift + P) do sublime e digite 'install package' aperte 'enter' espera alguns segundos e digite 'babel' e aperte 'enter', assim você instalou a sintaxe certa para utilizar no react.
+  Algo que me deixou meio perdido a principio foi a sintaxe do React, que mistura HTML e js tudo junto. Mas uma coisa que ajudou bastante foi o Sublime Text, a sintaxe do react(jsx / babel) não vem por default no sublime então eu tive que instalar um pacote para o "Highlight" ficar correto. Se você tambem esta com esse problema instale o Package Control no Sublime, [aqui](https://packagecontrol.io/installation) explica como fazer isso. E para instalar a syntaxe use o (Ctrl + Shift + P) do sublime e digite 'install package' aperte 'enter' espera alguns segundos e digite 'babel' e aperte 'enter', assim você instalou a sintaxe certa para utilizar no react.
 
 
 ## Back-end  
@@ -164,18 +162,18 @@ bundle install
 ```
   rails g devise_token_auth:install User auth
 ```
-  No arquivo de configuração config/initializers/devise_token_auth definimos a url de redirecinamento dos emails apos a configuração do registro.
+  No arquivo de configuração config/initializers/devise_token_auth definimos a url de redirecinamento dos emails apos a configuração do registro:
 ```
   config.default_confirm_success_url = "http://localhost:8080"
 ```
-  E para que o token não altere a cada request com o seguinte linha: 
+  E para que o token não altere a cada request: 
 ```
   config.change_headers_on_each_request = false
 ```
 
 ## Relacionamentos
 
-  Foi criado as foreign keys de user_id nos modelos categoria e lancamento e a foreign key categoria_id em lancamento, para relacionalos agora precimos adicionar algums linhas nos modelos:
+  Foram criadas as foreign keys de user_id nos modelos categoria e lancamento e a foreign key categoria_id em lancamento, para relacioná-los precimos adicionar algums linhas nos modelos:
 
   app/models/lancamento.rb
 ```
@@ -192,7 +190,7 @@ bundle install
   has_many :categorias
   has_many :lancamentos
 ```
-  Agora os modelos estão relacionados corretamento mas os controllers ainda precisam ser ajustados para que mostrem apenas os registros relacionados ao usuário, para isso precisamos fazer tres coisas. 
+  Agora os modelos estão relacionados corretamento mas os controllers ainda precisam ser ajustados para que mostrem apenas os registros relacionados ao usuário, para isso precisamos fazer tres coisas:
 
   A primeira foi criar um controller autenticado, que herdará do application controller e só poderá ser acessado por usuários logados. Então criamos o /app/controllers/authencated_controller.rb:
 ```
@@ -201,7 +199,7 @@ class AuthenticatedController < ApplicationController
 end
 ```
   
-  E a segunda foi fazer com que os controllers de lançamentos e categorias herdem do authenticated_controller:
+  A segunda foi fazer com que os controllers de lançamentos e categorias herdem do authenticated_controller:
 
 ```
 class LancamentosController < AuthenticatedController
@@ -239,6 +237,71 @@ class CategoriasController < AuthenticatedController
 
 ## Front-end
   Para criar o front utilizamos node.js, reactjs, axios e o tema para bootstrap CoreUI.
-  Não se pode chamar nenhum desses de framework, são mais um conjunto de bibliotecas isolada mas que funcionam muito bem juntas.
+  Não se pode chamar nenhum desses de framework, são mais um conjunto de bibliotecas isoladas mas que funcionam muito bem juntas.
 
 ## Criando a SPA
+
+  A SPA foi criada em cima do [projeto](https://github.com/mrholek/CoreUI-React/tree/master/React_Full_Project) da [CoreUI](http://coreui.io/), aonde limpamos o layout e recriamos as rotas da aplicação para atender o objetivo do projeto.
+
+  Para instalar foi só clonar o repositorio:
+```
+git clone https://github.com/mrholek/CoreUI-React.git
+```
+  Entrar na pasta React_Full_Project:
+```
+cd CoreUI-React/React_Full_Project
+```
+  E mandar o npm fazer o que ele foi feito pra fazer:
+```
+npm update
+```
+  Para comunicar com a API foi utilizado o [axios](https://github.com/axios/axios). Um exemplo de uso:
+```
+  // no terminal:
+  npm install axios --save
+
+  // no código:
+  import axios from "axios"
+    
+  axios
+    .get( 
+      "http://url_da_minha_api.com.br/records", 
+      {headers: {chave: "valor"}}
+    )
+    .then(res =>{
+      console.log(res.data)
+    })
+    .catch((err) => {
+      console.log(err.message)
+    });
+```
+
+  Para registro e login utilizamos [J-Toker](https://github.com/lynndylanhurley/j-toker) que com apenas a configuração da url da api já faz toda a parte de regitro e autenticação.
+  
+```
+  // no terminal:
+  npm install j-toker --save
+
+  // no código:
+  import Auth from 'j-toker'
+
+  // configuração
+  Auth.configure({apiUrl: 'http://url_da_minha_api.com.br'});
+
+  // login
+  Auth.emailSignIn(
+      {
+        email: this.state.email, 
+        senha: this.state.senha
+      }
+    )
+    .then(res => {
+      self.props.history.push('/home')
+    });
+
+  // Retorna os dados de autenticação a serem mandados em cada requisição
+  Auth.retrieveData('authHeaders')
+
+
+```
+  E o [CRUD](https://github.com/CassianoSF/react_spa_example/blob/master/src/components/Crud/Crud.js) é um componente criado para aceitar diversos tipos de dados, aonde se passa a estrutura do registro e a url da API, ai ele monta a lista, formularios, confirmações, etc.
