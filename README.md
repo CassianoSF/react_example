@@ -268,7 +268,7 @@ git clone https://github.com/mrholek/CoreUI-React.git
 ```
 cd CoreUI-React/React_Full_Project
 ```
-  E mandar o npm fazer o que ele foi feito pra fazer:
+  E baixar e instalar as dependências:
 ```
 npm update
 ```
