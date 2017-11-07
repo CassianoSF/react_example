@@ -4,6 +4,7 @@ import {Container} from 'reactstrap';
 import Sidebar from '../../components/Sidebar/';
 import Categorias from '../../views/Categorias/';
 import Lançamentos from '../../views/Lançamentos/';
+import Graficos from '../../views/Graficos/';
 
 import Auth from 'j-toker'
 
@@ -28,10 +29,14 @@ class Full extends Component {
                   <Lançamentos {...props} authenticate={this.props.authenticate} auth={this.props.auth}/>}
                 />
 
+                <Route exact path="/graficos" name="Graficos" history={this.props.history} render={(props) => 
+                  <Graficos {...props} authenticate={this.props.authenticate} auth={this.props.auth}/>}
+                />
+
                 <Redirect from="/" to={this.props.home}/>
               </Switch>
             </Container>
-          </main>
+          </main>a
         </div>
       </div>
     );

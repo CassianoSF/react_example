@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import Crud from '../../components/Crud/Crud.js'
-import * as api from '../../api.js' 
+import * as api from '../../api.js'
 import axios from 'axios'
 import Auth from 'j-toker'
 
@@ -84,7 +84,7 @@ class Lançamentos extends Component {
     return (
       <div>
         <div className="container">
-          <div style={{margin: "auto", width: "50%"}}>
+          <div style={{margin: "auto", width: "50%", textAlign: "center"}}>
             <div className="btn btn-success">Receitas: R$ {total_receitas.toFixed(2)} </div>
             <div className="btn btn-danger">Despesas: R$ {total_despesas.toFixed(2)} </div>
             <div className="btn btn-primary">Saldo: R$  {saldo.toFixed(2)} </div>

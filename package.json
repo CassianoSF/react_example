@@ -41,7 +41,7 @@
     "j-toker": "0.0.10-beta3",
     "popper.js": "^1.12.5",
     "react": "^15.6.2",
-    "react-chartjs-2": "2.6.2",
+    "react-chartjs-2": "^2.6.2",
     "react-color": "^2.13.8",
     "react-dom": "^15.6.2",
     "react-input-color": "^1.7.2",

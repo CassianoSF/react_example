@@ -44,6 +44,9 @@ class Sidebar extends Component {
             <li className="nav-item">
               <NavLink className="nav-link sidebar-nav-link" to={'/categorias'} ><i className="fa fa-files-o"></i> Categorias</NavLink>
             </li>
+            <li className="nav-item">
+              <NavLink className="nav-link sidebar-nav-link" to={'/graficos'} ><i className="fa fa-files-o"></i> Gráficos</NavLink>
+            </li>
           </ul>
         </nav>
       </div>
