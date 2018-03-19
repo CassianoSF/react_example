@@ -32,6 +32,7 @@
     "webpack-dev-server": "^2.8.2"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "bootstrap": "^4.0.0-beta",
     "chart.js": "2.7.0",
     "coloreact": "^0.2.4",
